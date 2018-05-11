@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">RecyclerExample</string>
+    <string name="add">Добавить элемент</string>
+    <string name="open">Открыть</string>
+    <string name="close">Закрыть</string>
+    <string name="open_drawer">Open NavigationDrawer</string>
+    <string name="close_drawer">Close NavigationDrawer</string>
+</resources>

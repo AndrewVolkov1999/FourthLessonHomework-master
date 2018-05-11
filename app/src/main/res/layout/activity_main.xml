@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v4.widget.SwipeRefreshLayout android:id="@+id/Swipe"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!--NestedScrollView, как и ScrollView, дает нам возможность
+    прокручивать содержимое layout'а, но в отличие от обычного
+    ScrollView ладит с ресайклером внутри нее -->
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode="true"
+            android:layout_margin="10dp">
+            <!--аттрибут focusableInTouchMode заставляет
+            NestedScrollView при старте экрана смотреть
+            именно на этот элемент (не понятно - убери и посмотри
+            на разницу)-->
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/add"
+                android:id="@+id/add_button"/>
+
+
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/recycler"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/recycler_background"/>
+        <!--Внимание на background-->
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>
+        <!--<android.support.design.widget.NavigationView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--app:menu="@menu/main_menu"-->
+            <!--android:layout_gravity="start">-->
+        <!--</android.support.design.widget.NavigationView>-->
+
+</android.support.v4.widget.SwipeRefreshLayout>
