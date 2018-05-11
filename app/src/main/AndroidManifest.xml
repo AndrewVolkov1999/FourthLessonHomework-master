@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".AddProductActivity" />
-        <activity android:name=".SingleMeme"></activity>
+        <activity android:name=".SingleMeme" />
+        <activity android:name=".Description"></activity>
     </application>
 
 </manifest>
