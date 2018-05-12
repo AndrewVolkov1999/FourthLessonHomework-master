@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
-        return  true;
+        return true;
     }
 
     private void init() {
@@ -114,12 +114,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.setDrawerListener(toggle);
         toggle.syncState();
 
-        View.OnClickListener sumListener = new View.OnClickListener() {
+        View.OnClickListener itemListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
             }
         };
-        adapter = new GoodsAdapter(getApplicationContext(), sumListener);
+        adapter = new GoodsAdapter(getApplicationContext(), itemListener);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
 
