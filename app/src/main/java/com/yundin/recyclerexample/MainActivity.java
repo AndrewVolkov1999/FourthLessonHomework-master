@@ -10,6 +10,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -41,8 +42,23 @@ public class MainActivity extends AppCompatActivity {
 
         init();
         updateData();
+        Swipe();
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        if (requestCode == resultCode) {
+            int id = data.getIntExtra(AddProductActivity.ID, -1);
+            String title = data.getStringExtra(AddProductActivity.TITLE);
+            int price = data.getIntExtra(AddProductActivity.PRICE, 0);
+            String image = data.getStringExtra(AddProductActivity.IMAGE);
+            adapter.appendItemWithNotify(new Product(id, image, price, title));
+        }
+    }
+
+    public void Swipe(){
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -59,25 +75,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
 
-        if (requestCode == resultCode) {
-            int id = data.getIntExtra(AddProductActivity.ID, -1);
-            String title = data.getStringExtra(AddProductActivity.TITLE);
-            int price = data.getIntExtra(AddProductActivity.PRICE, 0);
-            String image = data.getStringExtra(AddProductActivity.IMAGE);
-            adapter.appendItemWithNotify(new Product(id, image, price, title));
+        if (id == R.id.home){
+            Intent i = new Intent(this, MainActivity.class);
+            startActivity(i);
+
+        } else if (id == R.id.description){
+            Intent i = new Intent(this, Description.class);
+            startActivity(i);
         }
+        return super.onOptionsItemSelected(item);
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        if (myToggle.onOptionsItemSelected(item)){
-//            return true;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return  true;
+    }
 
     private void init() {
         recyclerView = findViewById(R.id.recycler);
@@ -99,7 +115,6 @@ public class MainActivity extends AppCompatActivity {
         View.OnClickListener sumListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
             }
         };
         adapter = new GoodsAdapter(getApplicationContext(), sumListener);
